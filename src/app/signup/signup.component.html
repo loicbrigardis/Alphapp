@@ -1,0 +1,69 @@
+<div class="row justify-content-center">
+  <div class="col-6">
+    <form [formGroup]="form" (ngSubmit)="signUp()" class="form-signin">
+      <h2 class="form-signin-heading">Please sign up</h2>
+
+      <label for="firstname" class="sr-only">Firstname</label>
+      <input 
+      type="text" 
+      id="firstname" 
+      formControlName="firstname"
+      ngModel
+      class="form-control" 
+      placeholder="Firstname"
+      required autofocus>
+      <div *ngIf="firstname.touched && firstname.invalid" class="alert alert-danger" role="alert">
+        <div *ngIf="firstname.errors.required" >
+          Firstname is required
+        </div>
+      </div>
+
+      <label for="lastname" class="sr-only">Lastname</label>
+      <input 
+      type="text" 
+      id="lastname"
+      formControlName="lastname"
+      class="form-control" 
+      placeholder="Lastname" 
+      required>
+      <div *ngIf="lastname.touched && lastname.invalid" class="alert alert-danger" role="alert">
+        <div *ngIf="lastname.errors.required">
+          Lastname is required
+        </div>
+      </div>
+
+      <label for="password" class="sr-only">Password</label>
+      <input 
+      type="password" 
+      id="password"
+      formControlName="password"
+      class="form-control" 
+      placeholder="Password" 
+      required>
+      <div *ngIf="password.touched && password.invalid" class="alert alert-danger" role="alert">
+        <div *ngIf="password.errors.required">
+          Password is required
+        </div>
+      </div>
+
+      <label for="email" class="sr-only">Email</label>
+      <input 
+      type="email" 
+      id="email"
+      formControlName="email"
+      class="form-control" 
+      placeholder="Email" 
+      required>
+      <div *ngIf="email.touched && email.invalid" class="alert alert-danger" role="alert">
+        <div *ngIf="email.errors.required">
+          Email is required
+        </div>
+      </div>
+
+      <input [disabled]="form.invalid" class="btn btn-lg btn-primary btn-block" value="Sign up" type="submit">
+      <div class="alert alert-secondary" *ngIf="responseMsg">
+        {{ responseMsg }}
+      </div>
+    </form>
+  </div>
+</div>

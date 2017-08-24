@@ -1,0 +1,60 @@
+<div class="row justify-content-center">
+  <form class="col-8">
+    <div class="form-group">
+      <label for="message">Your message</label>
+      <textarea 
+        class="form-control" 
+        id="message"
+        #message
+        [(ngModel)]="myMsg"
+        name="message"
+        rows="3"></textarea>
+    </div>
+    <button 
+      class="btn btn-dark float-right" 
+      (click)="onSave(message.value); $event.preventDefault()"
+      >
+      Save message
+    </button>
+  </form>
+</div>
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="responseMsg" class="alert alert-danger" role="alert">
+      {{ responseMsg }}
+    </div>
+  </div>
+</div>
+<div class="row justify-content-center">
+  <div class="col-8">
+    <hr *ngIf="messages.length > 0">
+    <div *ngFor="let message of messages" class="card">
+      <div class="card-body">
+        <h4 class="card-title">{{ message.username }}</h4>
+        <hr>
+        <p *ngIf="message.messageId !== editMsg" class="card-text">{{ message.content }}</p>
+
+        <p class="card-text">
+          <textarea 
+          *ngIf="message.messageId === editMsg"
+          id="editedMessage"
+          name="editedMessage"
+          [(ngModel)]='editedMessage'
+          cols="95%" 
+          rows="5">{{ message.content }}</textarea>
+        </p>
+        <div *ngIf="responseEdit">
+          <div *ngIf="message.messageId === editMsg" class="alert alert-success" role="alert">
+            {{ responseEdit }}
+          </div>
+        </div>
+        <div *ngIf="messageOwner(message)" class="float-right">
+          <button *ngIf="message.messageId !== editMsg" (click)="deleteMessage(message)" style="border: 0" class="btn btn-outline-danger btn-sm">Delete</button>
+          <button *ngIf="message.messageId !== editMsg" (click)="editMessage(message)" class="btn btn-primary">Edit</button>
+          <button *ngIf="message.messageId === editMsg" (click)="cancelEditMessage()" style="border: 0" class="btn btn-outline-danger btn-sm">Annuler</button>
+          <button *ngIf="message.messageId === editMsg" [disabled]="!editedMessage" (click)="sendEditMessage(message, editedMessage)" class="btn btn-primary">Valid</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

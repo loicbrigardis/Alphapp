@@ -1,0 +1,20 @@
+<!-- <div *ngFor="let image of images" class="card">
+  <img src="{{ image }}" alt="Card image cap">
+  <p class="card-text">
+    Lorem ipsum dolor sit amet consectetur adipisicing 
+    elit. Expedita nesciunt fuga voluptate ea incidunt 
+    delectus, quod sed. Cumque nisi nostrum fugit nesciunt, 
+    ullam corporis eveniet asperiores repudiandae.
+  </p>
+</div> -->
+
+<div class="row justify-content-between">
+  <div *ngFor="let image of images" class="card" style="width: 20rem;">
+    <img class="card-img-top" src="{{ image }}" alt="Card image cap">
+    <div class="card-body">
+      <h4 class="card-title">Card title</h4>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
+</div>

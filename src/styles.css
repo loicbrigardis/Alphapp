@@ -1,0 +1,50 @@
+/* You can add global styles to this file, and also import other style files */
+nav .btn {
+    margin: 5px;
+}
+
+.active {
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 5px;
+}
+
+input {
+    margin-bottom: 8px;
+}
+
+.alert {
+    margin: 6px 0;
+}
+
+input[ng-reflect-required] {
+  background-image: radial-gradient(red 20%, transparent 25%);
+  background-size: 1em 1em;
+  background-position: top right;
+  background-repeat: no-repeat
+}
+
+input.ng-invalid.ng-touched {
+    border: 1px solid red;
+}
+
+.card {
+    margin-bottom: 8px;
+}
+
+.btn {
+    cursor: pointer;
+}
+
+app-errors .modal {
+    animation: fadeIn 600ms forwards ease-in-out;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(150px);
+    }
+}
