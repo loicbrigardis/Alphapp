@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const mongoose = require('mongoose');
+const pug = require('pug');
 
 // ENV VARIABLES
 require('dotenv').config({ path: 'variables.env' });
@@ -18,6 +19,7 @@ mongoose.Promise = global.Promise;
 mongoose.connect(process.env.DATABASE, { useMongoClient: true });
 
 app.use(express.static(__dirname + '/dist'));
+app.set('view engine', 'pug');
 
 // MIDDLEWARES
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -36,7 +38,7 @@ app.use('/api', route);
 
 // HANDLE ROUTE ERRORS
 app.use(function(req, res, next) {
-    return res.sendFile(path.join(__dirname + '/dist/index.html'));
+    return res.render('index');
 });
 
 // LISTENING PORT

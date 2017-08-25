@@ -1,5 +1,5 @@
 import { ErrorsService } from './../errors/errors.service';
-import { Http, Headers, Response, RequestOptions } from '@angular/http';
+import { Http, Headers, Response } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 
@@ -13,13 +13,12 @@ import 'rxjs/add/operator/map';
 export class AuthService {
   private API_URL = "http://localhost:4400/api/signup"
   private API_URL_AUTH = "http://localhost:4400/api/login"
-  private headers = new Headers({ 'Content-Type': 'application/json' });
-  private options = new RequestOptions({ headers: this.headers });
+  private options = new Headers({ 'Content-Type': 'application/json' });
 
   constructor(private http: Http, private errorsService: ErrorsService) { }
 
   signUp(user: User): Observable<any> {
-    return this.http.post(this.API_URL, JSON.stringify(user), this.options)
+    return this.http.post(this.API_URL, JSON.stringify(user), { headers: this.options})
       .map((result) => result.json())
       .catch((err) => {
         this.errorsService.handleError(err.json());
@@ -28,7 +27,7 @@ export class AuthService {
   }
 
   logIn(user: User): Observable<any> {
-    return this.http.post(this.API_URL_AUTH, JSON.stringify(user), this.options)
+    return this.http.post(this.API_URL_AUTH, JSON.stringify(user), { headers: this.options })
       .map((result) => result.json())
       .catch((err) => {
         this.errorsService.handleError(err.json());
@@ -37,7 +36,7 @@ export class AuthService {
   }
 
   userIsLogin(): boolean {
-    return window.localStorage.getItem('token') !== null;
+    return localStorage.getItem('token') !== null;
   }
 
   logout(): void {
