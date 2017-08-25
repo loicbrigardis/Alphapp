@@ -22,7 +22,7 @@ export class NavBarComponent implements OnInit {
     return this.authService.userIsLogin();
   }
 
-  logOut() {
+  onLogout() {
     this.authService.logout();
     this.router.navigate(['/']);
   }
